@@ -38,10 +38,9 @@ const RoverControl = ({ rover }) => {
   const controlButton = (icon, command, tooltip) => (
     <div className="control-button" title={tooltip}>
       <button
-        className="control-button"
         onPointerDown={() => handlePointerDown(command)}
         onPointerUp={handlePointerUp}
-        onPointerLeave={handlePointerUp} // Отправляем команду остановки, если пользователь убрал палец
+        onPointerLeave={handlePointerUp}
       >
         <span className="material-icons">{icon}</span>
       </button>
