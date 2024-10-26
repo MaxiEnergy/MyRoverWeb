@@ -53,8 +53,8 @@ const RoverControl = ({ rover }) => {
       <h1>Управление Ровером {rover.roverNumber}</h1>
       <div className="controls">
         {controlButton('arrow_back', 0x02, 'Left')}
-        {controlButton('arrow_forward', 0x01, 'Right')}
         {controlButton('arrow_upward', 0x04, 'Forward')}
+        {controlButton('arrow_forward', 0x01, 'Right')}
         {controlButton('arrow_downward', 0x05, 'Backward')}
       </div>
       <div className="light-control">
