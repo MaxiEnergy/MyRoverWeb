@@ -1,4 +1,3 @@
-// src/components/RoverControl.js
 import React from 'react';
 import { sendCommand } from '../bluetooth';
 

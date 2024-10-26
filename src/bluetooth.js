@@ -1,5 +1,3 @@
-// src/bluetooth.js
-
 // Функция для поиска доступных устройств с именем "Rover Toy XXX"
 export async function findRovers() {
     if (!navigator.bluetooth) {
@@ -10,7 +8,7 @@ export async function findRovers() {
     // Генерация массива UUID от 0001 до 0999
     const serviceUUIDs = [];
     for (let i = 1; i <= 999; i++) {
-      const paddedNumber = i.toString().padStart(4, '0'); // Пример: '0001', '0002', ..., '0999'
+      const paddedNumber = i.toString().padStart(4, '0');
       serviceUUIDs.push(`0000170d-${paddedNumber}-1000-8000-00805f9b34fb`);
     }
   

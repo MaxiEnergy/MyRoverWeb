@@ -1,4 +1,3 @@
-// src/components/FindRovers.js
 import React, { useState } from 'react';
 import { findRovers, connectToRover } from '../bluetooth';
 import RoverControl from './RoverControl'; // Импортируем компонент для управления
