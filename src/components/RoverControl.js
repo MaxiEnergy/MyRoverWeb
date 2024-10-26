@@ -1,43 +1,48 @@
+// src/components/RoverControl.js
 import React from 'react';
 import { sendCommand } from '../bluetooth';
 
 const RoverControl = ({ rover }) => {
-  const { device, characteristic } = rover;
+  const { characteristic } = rover;
 
-  const handleCommand = async (command) => {
-    if (characteristic) {
+  const handlePointerDown = async (command) => {
+    if (!characteristic) return;
+    try {
       await sendCommand(characteristic, command);
+    } catch (error) {
+      console.error('Ошибка отправки команды:', error);
     }
   };
+
+  const handlePointerUp = async () => {
+    if (!characteristic) return;
+    try {
+      await sendCommand(characteristic, 0); // Отправляем команду остановки (0)
+    } catch (error) {
+      console.error('Ошибка отправки команды:', error);
+    }
+  };
+
+  const controlButton = (icon, command, tooltip) => (
+    <div className="control-button">
+      <button
+        onPointerDown={() => handlePointerDown(command)}
+        onPointerUp={handlePointerUp}
+        onPointerLeave={handlePointerUp} // Отправляем команду остановки, если пользователь убрал палец
+      >
+        <span className="material-icons">{icon}</span>
+      </button>
+    </div>
+  );
 
   return (
     <div className="rover-control">
       <h1>Управление Ровером {rover.roverNumber}</h1>
       <div className="controls">
-        <button
-          onPointerDown={() => handleCommand(0x01)}
-          onPointerUp={() => handleCommand(0)}
-        >
-          Влево
-        </button>
-        <button
-          onPointerDown={() => handleCommand(0x02)}
-          onPointerUp={() => handleCommand(0)}
-        >
-          Вправо
-        </button>
-        <button
-          onPointerDown={() => handleCommand(0x04)}
-          onPointerUp={() => handleCommand(0)}
-        >
-          Вперед
-        </button>
-        <button
-          onPointerDown={() => handleCommand(0x05)}
-          onPointerUp={() => handleCommand(0)}
-        >
-          Назад
-        </button>
+        {controlButton('arrow_back', 0x02, 'Left')}
+        {controlButton('arrow_forward', 0x01, 'Right')}
+        {controlButton('arrow_upward', 0x04, 'Forward')}
+        {controlButton('arrow_downward', 0x05, 'Backward')}
       </div>
     </div>
   );
