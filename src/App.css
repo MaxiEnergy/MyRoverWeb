@@ -12,22 +12,22 @@ body {
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  gap: 2vh;
+  gap: 1.6vh;
   position: relative;
   z-index: 1;
 }
 
 .back-button {
   position: absolute;
-  top: 2vh;
-  left: 2vh;
-  width: 5vh;
-  height: 5vh;
-  border: 0.2vh solid #ff8585;
+  top: 1.6vh;
+  left: 1.6vh;
+  width: 4vh;
+  height: 4vh;
+  border: 0.16vh solid #ff8585;
   background-color: white;
   color: #ff8585;
   border-radius: 50%;
-  font-size: 2.5vh;
+  font-size: 2vh;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -40,29 +40,29 @@ body {
 }
 
 .rover-title {
-  font-size: 3.6vh;
+  font-size: 2.9vh;
   font-weight: bold;
   text-align: center;
-  margin-bottom: 4vh;
+  margin-bottom: 3.2vh;
 }
 
 .controls-grid {
   display: grid;
-  grid-template-columns: repeat(4, 10vh);
-  grid-template-rows: repeat(4, 10vh);
-  gap: 2vh;
+  grid-template-columns: repeat(4, 8vh);
+  grid-template-rows: repeat(4, 8vh);
+  gap: 1.6vh;
   align-items: center;
   justify-items: center;
 }
 
 .control-button {
-  width: 10vh;
-  height: 10vh;
-  border: 0.2vh solid #ff8585;
+  width: 8vh;
+  height: 8vh;
+  border: 0.16vh solid #ff8585;
   background-color: white;
   color: #ff8585;
-  border-radius: 1.6vh;
-  font-size: 4.8vh;
+  border-radius: 1.3vh;
+  font-size: 3.8vh;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -85,13 +85,13 @@ body {
 }
 
 .light-button {
-  width: 10vh;
-  height: 10vh;
-  border: 0.2vh solid #ff8585;
+  width: 8vh;
+  height: 8vh;
+  border: 0.16vh solid #ff8585;
   background-color: white;
   color: #ff8585;
-  border-radius: 1.6vh;
-  font-size: 4.8vh;
+  border-radius: 1.3vh;
+  font-size: 3.8vh;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -104,7 +104,7 @@ body {
 }
 
 .material-icons {
-  font-size: 4.8vh;
+  font-size: 3.8vh;
 }
 
 #bubbles-canvas {
@@ -124,16 +124,16 @@ body {
 }
 
 .rover-item {
-  width: 40vh;
-  height: 16vh;
+  width: 32vh;
+  height: 12.8vh;
   background-color: white;
-  border: 0.2vh solid #ff8585;
-  border-radius: 1.6vh;
-  margin: 2vh 0;
+  border: 0.16vh solid #ff8585;
+  border-radius: 1.3vh;
+  margin: 1.6vh 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 3.6vh;
+  font-size: 2.9vh;
   color: #ff8585;
   cursor: pointer;
   transition: background-color 0.3s ease;
@@ -144,15 +144,23 @@ body {
 }
 
 button {
-  padding: 2vh 4vh;
-  border: 0.2vh solid #ff8585;
+  padding: 1.6vh 3.2vh;
+  border: 0.16vh solid #ff8585;
   background-color: white;
   color: #ff8585;
-  border-radius: 1.6vh;
-  font-size: 3.2vh;
+  border-radius: 1.3vh;
+  font-size: 2.6vh;
   cursor: pointer;
 }
 
 button:hover {
   background-color: #ffdfdf;
+}
+
+button, 
+.control-button, 
+.back-button, 
+.light-button, 
+.rover-item {
+  user-select: none;
 }
