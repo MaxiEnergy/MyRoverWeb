@@ -5,18 +5,14 @@ export async function findRovers() {
       return null;
     }
   
-    // Генерация массива UUID от 0001 до 0999 для Rover Toy
     const serviceUUIDs = [];
     for (let i = 1; i <= 999; i++) {
       const paddedNumber = i.toString().padStart(4, '0');
-      serviceUUIDs.push(`0000170d-${paddedNumber}-1000-8000-00805f9b34fb`);
+      serviceUUIDs.push(`0000170d-${paddedNumber}-1000-8000-00805f9b34fb`.toLowerCase());
     }
-  
-    // Добавляем статические UUID для "Yandex Delivery Robot"
-    serviceUUIDs.push("0000170d-0000-1000-8000-00805f9b34fb");
+    serviceUUIDs.push("0000170d-0000-1000-8000-00805f9b34fb".toLowerCase());
   
     try {
-      // Добавляем все сгенерированные UUID в optionalServices
       const device = await navigator.bluetooth.requestDevice({
         filters: [
           { namePrefix: 'Rover Toy ' },
@@ -32,33 +28,36 @@ export async function findRovers() {
     }
   }
   
-  // Функция для подключения к устройству
   export async function connectToRover(device) {
     try {
       let serviceUUID, characteristicUUID;
   
       if (device.name.startsWith("Rover Toy")) {
-        const roverNumber = device.name.split(' ')[2]; // Извлекаем номер ровера из имени
-  
-        // Формируем динамические UUID для Rover Toy и приводим их к нижнему регистру
+        const roverNumber = device.name.split(' ')[2];
         serviceUUID = `0000170d-${roverNumber.padStart(4, '0')}-1000-8000-00805f9b34fb`.toLowerCase();
         characteristicUUID = `00002a60-${roverNumber.padStart(4, '0')}-1000-8000-00805f9b34fb`.toLowerCase();
       } else if (device.name === "Yandex Delivery Robot") {
-        // Статические UUID для Yandex Delivery Robot
-        serviceUUID = "0000170d-0000-1000-8000-00805f9b34fb";
-        characteristicUUID = "00002a60-0000-1000-8000-00805f9b34fb";
+        serviceUUID = "0000170d-0000-1000-8000-00805f9b34fb".toLowerCase();
+        characteristicUUID = "00002a60-0000-1000-8000-00805f9b34fb".toLowerCase();
       } else {
         console.error("Неизвестное устройство");
         return null;
       }
   
-      // Подключаемся к GATT серверу устройства
       const server = await device.gatt.connect();
-      // Получаем доступ к нужному сервису
-      const service = await server.getPrimaryService(serviceUUID);
+      await new Promise(resolve => setTimeout(resolve, 500));
   
-      // Получаем характеристику
-      const characteristic = await service.getCharacteristic(characteristicUUID);
+      console.log('Подключились к устройству:', device.name);
+      console.log('Используемый UUID сервиса:', serviceUUID);
+      console.log('Используемый UUID характеристики:', characteristicUUID);
+  
+      const service = await server.getPrimaryService(serviceUUID);
+      const characteristics = await service.getCharacteristics();
+      const characteristic = characteristics.find(char => char.uuid.toLowerCase() === characteristicUUID.toLowerCase());
+      if (!characteristic) {
+        console.error('Характеристика с указанным UUID не найдена.');
+        return null;
+      }
   
       return { device, characteristic };
     } catch (error) {
@@ -67,9 +66,18 @@ export async function findRovers() {
     }
   }
   
-  // Функция для отправки команды на устройство
   export async function sendCommand(characteristic, command) {
     const commandArray = new Uint8Array([command]);
-    await characteristic.writeValue(commandArray);
+    try {
+      if (characteristic.properties.write) {
+        await characteristic.writeValue(commandArray);
+      } else if (characteristic.properties.writeWithoutResponse) {
+        await characteristic.writeValueWithoutResponse(commandArray);
+      } else {
+        console.error('Характеристика не поддерживает запись.');
+      }
+    } catch (error) {
+      console.error('Ошибка отправки команды:', error);
+    }
   }
   
