@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/MyRoverWeb/static/css/main.7b19dd3d.css",
+    "main.css": "/MyRoverWeb/static/css/main.7c9b2d55.css",
     "main.js": "/MyRoverWeb/static/js/main.9055cb9a.js",
     "static/js/453.94246f86.chunk.js": "/MyRoverWeb/static/js/453.94246f86.chunk.js",
     "index.html": "/MyRoverWeb/index.html",
-    "main.7b19dd3d.css.map": "/MyRoverWeb/static/css/main.7b19dd3d.css.map",
+    "main.7c9b2d55.css.map": "/MyRoverWeb/static/css/main.7c9b2d55.css.map",
     "main.9055cb9a.js.map": "/MyRoverWeb/static/js/main.9055cb9a.js.map",
     "453.94246f86.chunk.js.map": "/MyRoverWeb/static/js/453.94246f86.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.7b19dd3d.css",
+    "static/css/main.7c9b2d55.css",
     "static/js/main.9055cb9a.js"
   ]
 }
