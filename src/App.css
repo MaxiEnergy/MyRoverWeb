@@ -1,14 +1,9 @@
-/* Базовые настройки для адаптивности */
-html {
-  font-size: 2vw; /* Базовый размер шрифта в зависимости от ширины экрана */
-}
-
 body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
   height: 100vh;
-  overflow: hidden; /* Убираем прокрутку */
+  overflow: hidden; 
 }
 
 .find-rovers, .rover-control {
@@ -17,22 +12,22 @@ body {
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  gap: 2vh;
+  gap: 20px;
   position: relative;
   z-index: 1;
 }
 
 .back-button {
   position: absolute;
-  top: 2vh;
-  left: 2vh;
-  width: 8vw;
-  height: 8vw;
-  border: 0.2vw solid #ff8585;
+  top: 20px;
+  left: 20px;
+  width: 50px;
+  height: 50px;
+  border: 2px solid #ff8585;
   background-color: white;
   color: #ff8585;
   border-radius: 50%;
-  font-size: 4vw;
+  font-size: 24px;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -45,38 +40,39 @@ body {
 }
 
 .rover-title {
-  font-size: 3.6vw;
+  font-size: 36px;
   font-weight: bold;
   text-align: center;
-  margin-bottom: 4vh;
+  margin-bottom: 40px;
 }
 
 .controls-grid {
   display: grid;
-  grid-template-columns: repeat(4, 10vw);
-  grid-template-rows: repeat(4, 10vw);
-  gap: 2vw;
+  grid-template-columns: repeat(4, 100px);
+  grid-template-rows: repeat(4, 100px);
+  gap: 20px;
   align-items: center;
   justify-items: center;
 }
 
 .control-button {
-  width: 10vw;
-  height: 10vw;
-  border: 0.2vw solid #ff8585;
+  width: 100px;
+  height: 100px;
+  border: 2px solid #ff8585;
   background-color: white;
   color: #ff8585;
-  border-radius: 1.6vw;
-  font-size: 4.8vw;
+  border-radius: 16px;
+  font-size: 48px;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: background-color 0.3s ease;
+  box-sizing: border-box; 
 }
 
 .control-button .material-icons {
-  pointer-events: none; /* Иконка не препятствует клику */
+  pointer-events: none; 
 }
 
 .control-button:active {
@@ -89,13 +85,13 @@ body {
 }
 
 .light-button {
-  width: 10vw;
-  height: 10vw;
-  border: 0.2vw solid #ff8585;
+  width: 100px;
+  height: 100px;
+  border: 2px solid #ff8585;
   background-color: white;
   color: #ff8585;
-  border-radius: 1.6vw;
-  font-size: 4.8vw;
+  border-radius: 16px;
+  font-size: 48px;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -108,7 +104,7 @@ body {
 }
 
 .material-icons {
-  font-size: 4.8vw;
+  font-size: 48px;
 }
 
 #bubbles-canvas {
@@ -128,16 +124,16 @@ body {
 }
 
 .rover-item {
-  width: 40vw;
-  height: 16vw;
+  width: 400px; 
+  height: 160px; 
   background-color: white;
-  border: 0.2vw solid #ff8585;
-  border-radius: 1.6vw;
-  margin: 2vh 0;
+  border: 2px solid #ff8585;
+  border-radius: 16px;
+  margin: 20px 0; 
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 3.6vw;
+  font-size: 36px; 
   color: #ff8585;
   cursor: pointer;
   transition: background-color 0.3s ease;
@@ -148,28 +144,15 @@ body {
 }
 
 button {
-  padding: 2vh 4vw;
-  border: 0.2vw solid #ff8585;
+  padding: 20px 40px; 
+  border: 2px solid #ff8585;
   background-color: white;
   color: #ff8585;
-  border-radius: 1.6vw;
-  font-size: 3.2vw;
+  border-radius: 16px;
+  font-size: 32px; 
   cursor: pointer;
 }
 
 button:hover {
   background-color: #ffdfdf;
-}
-
-/* Медиазапросы для различных размеров экранов */
-@media (max-width: 768px) {
-  html {
-    font-size: 4vw;
-  }
-}
-
-@media (max-width: 480px) {
-  html {
-    font-size: 6vw;
-  }
 }
