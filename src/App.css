@@ -1,6 +1,6 @@
-
+/* Базовые настройки для адаптивности */
 html {
-  font-size: 1vw; 
+  font-size: 2vw; /* Базовый размер шрифта в зависимости от ширины экрана */
 }
 
 body {
@@ -8,7 +8,7 @@ body {
   margin: 0;
   padding: 0;
   height: 100vh;
-  overflow: hidden; 
+  overflow: hidden; /* Убираем прокрутку */
 }
 
 .find-rovers, .rover-control {
@@ -17,22 +17,22 @@ body {
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  gap: 1vh;
+  gap: 2vh;
   position: relative;
   z-index: 1;
 }
 
 .back-button {
   position: absolute;
-  top: 1vh;
-  left: 1vh;
-  width: 4vw;
-  height: 4vw;
-  border: 0.1vw solid #ff8585;
+  top: 2vh;
+  left: 2vh;
+  width: 8vw;
+  height: 8vw;
+  border: 0.2vw solid #ff8585;
   background-color: white;
   color: #ff8585;
   border-radius: 50%;
-  font-size: 2vw;
+  font-size: 4vw;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -45,29 +45,29 @@ body {
 }
 
 .rover-title {
-  font-size: 1.8vw;
+  font-size: 3.6vw;
   font-weight: bold;
   text-align: center;
-  margin-bottom: 2vh;
+  margin-bottom: 4vh;
 }
 
 .controls-grid {
   display: grid;
-  grid-template-columns: repeat(4, 5vw);
-  grid-template-rows: repeat(4, 5vw);
-  gap: 1vw;
+  grid-template-columns: repeat(4, 10vw);
+  grid-template-rows: repeat(4, 10vw);
+  gap: 2vw;
   align-items: center;
   justify-items: center;
 }
 
 .control-button {
-  width: 5vw;
-  height: 5vw;
-  border: 0.1vw solid #ff8585;
+  width: 10vw;
+  height: 10vw;
+  border: 0.2vw solid #ff8585;
   background-color: white;
   color: #ff8585;
-  border-radius: 0.8vw;
-  font-size: 2.4vw;
+  border-radius: 1.6vw;
+  font-size: 4.8vw;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -76,7 +76,7 @@ body {
 }
 
 .control-button .material-icons {
-  pointer-events: none; 
+  pointer-events: none; /* Иконка не препятствует клику */
 }
 
 .control-button:active {
@@ -89,13 +89,13 @@ body {
 }
 
 .light-button {
-  width: 5vw;
-  height: 5vw;
-  border: 0.1vw solid #ff8585;
+  width: 10vw;
+  height: 10vw;
+  border: 0.2vw solid #ff8585;
   background-color: white;
   color: #ff8585;
-  border-radius: 0.8vw;
-  font-size: 2.4vw;
+  border-radius: 1.6vw;
+  font-size: 4.8vw;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -108,7 +108,7 @@ body {
 }
 
 .material-icons {
-  font-size: 2.4vw;
+  font-size: 4.8vw;
 }
 
 #bubbles-canvas {
@@ -128,16 +128,16 @@ body {
 }
 
 .rover-item {
-  width: 20vw;
-  height: 8vw;
+  width: 40vw;
+  height: 16vw;
   background-color: white;
-  border: 0.1vw solid #ff8585;
-  border-radius: 0.8vw;
-  margin: 1vh 0;
+  border: 0.2vw solid #ff8585;
+  border-radius: 1.6vw;
+  margin: 2vh 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.8vw;
+  font-size: 3.6vw;
   color: #ff8585;
   cursor: pointer;
   transition: background-color 0.3s ease;
@@ -148,12 +148,12 @@ body {
 }
 
 button {
-  padding: 1vh 2vw;
-  border: 0.1vw solid #ff8585;
+  padding: 2vh 4vw;
+  border: 0.2vw solid #ff8585;
   background-color: white;
   color: #ff8585;
-  border-radius: 0.8vw;
-  font-size: 1.6vw;
+  border-radius: 1.6vw;
+  font-size: 3.2vw;
   cursor: pointer;
 }
 
@@ -164,12 +164,12 @@ button:hover {
 /* Медиазапросы для различных размеров экранов */
 @media (max-width: 768px) {
   html {
-    font-size: 2vw;
+    font-size: 4vw;
   }
 }
 
 @media (max-width: 480px) {
   html {
-    font-size: 3vw;
+    font-size: 6vw;
   }
 }
