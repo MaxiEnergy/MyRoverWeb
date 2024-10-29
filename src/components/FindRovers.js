@@ -8,7 +8,6 @@ const FindRovers = () => {
   const [selectedRover, setSelectedRover] = useState(null);
 
   useEffect(() => {
-    // Настройка анимации пузырьков
     const canvas = document.getElementById('bubbles-canvas');
     const ctx = canvas.getContext('2d');
     let bubbles = [];

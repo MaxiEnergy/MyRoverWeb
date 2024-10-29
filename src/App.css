@@ -3,7 +3,7 @@ body {
   margin: 0;
   padding: 0;
   height: 100vh;
-  overflow: hidden; 
+  overflow: hidden;
 }
 
 .find-rovers, .rover-control {
@@ -12,22 +12,22 @@ body {
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  gap: 20px;
+  gap: 2vh;
   position: relative;
   z-index: 1;
 }
 
 .back-button {
   position: absolute;
-  top: 20px;
-  left: 20px;
-  width: 50px;
-  height: 50px;
-  border: 2px solid #ff8585;
+  top: 2vh;
+  left: 2vh;
+  width: 5vh;
+  height: 5vh;
+  border: 0.2vh solid #ff8585;
   background-color: white;
   color: #ff8585;
   border-radius: 50%;
-  font-size: 24px;
+  font-size: 2.5vh;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -40,39 +40,39 @@ body {
 }
 
 .rover-title {
-  font-size: 36px;
+  font-size: 3.6vh;
   font-weight: bold;
   text-align: center;
-  margin-bottom: 40px;
+  margin-bottom: 4vh;
 }
 
 .controls-grid {
   display: grid;
-  grid-template-columns: repeat(4, 100px);
-  grid-template-rows: repeat(4, 100px);
-  gap: 20px;
+  grid-template-columns: repeat(4, 10vh);
+  grid-template-rows: repeat(4, 10vh);
+  gap: 2vh;
   align-items: center;
   justify-items: center;
 }
 
 .control-button {
-  width: 100px;
-  height: 100px;
-  border: 2px solid #ff8585;
+  width: 10vh;
+  height: 10vh;
+  border: 0.2vh solid #ff8585;
   background-color: white;
   color: #ff8585;
-  border-radius: 16px;
-  font-size: 48px;
+  border-radius: 1.6vh;
+  font-size: 4.8vh;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: background-color 0.3s ease;
-  box-sizing: border-box; 
+  box-sizing: border-box;
 }
 
 .control-button .material-icons {
-  pointer-events: none; 
+  pointer-events: none;
 }
 
 .control-button:active {
@@ -85,13 +85,13 @@ body {
 }
 
 .light-button {
-  width: 100px;
-  height: 100px;
-  border: 2px solid #ff8585;
+  width: 10vh;
+  height: 10vh;
+  border: 0.2vh solid #ff8585;
   background-color: white;
   color: #ff8585;
-  border-radius: 16px;
-  font-size: 48px;
+  border-radius: 1.6vh;
+  font-size: 4.8vh;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -104,7 +104,7 @@ body {
 }
 
 .material-icons {
-  font-size: 48px;
+  font-size: 4.8vh;
 }
 
 #bubbles-canvas {
@@ -124,16 +124,16 @@ body {
 }
 
 .rover-item {
-  width: 400px; 
-  height: 160px; 
+  width: 40vh;
+  height: 16vh;
   background-color: white;
-  border: 2px solid #ff8585;
-  border-radius: 16px;
-  margin: 20px 0; 
+  border: 0.2vh solid #ff8585;
+  border-radius: 1.6vh;
+  margin: 2vh 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 36px; 
+  font-size: 3.6vh;
   color: #ff8585;
   cursor: pointer;
   transition: background-color 0.3s ease;
@@ -144,12 +144,12 @@ body {
 }
 
 button {
-  padding: 20px 40px; 
-  border: 2px solid #ff8585;
+  padding: 2vh 4vh;
+  border: 0.2vh solid #ff8585;
   background-color: white;
   color: #ff8585;
-  border-radius: 16px;
-  font-size: 32px; 
+  border-radius: 1.6vh;
+  font-size: 3.2vh;
   cursor: pointer;
 }
 
