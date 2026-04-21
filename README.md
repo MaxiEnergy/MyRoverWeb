@@ -1,70 +1,121 @@
-# Getting Started with Create React App
+# MyRoverWeb
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Веб-приложение для управления игрушечным роботом-доставщиком по Bluetooth Low Energy прямо из браузера. Интерфейс позволяет найти доступный ровер, подключиться к нему и отправлять команды движения и управления светом без установки нативного приложения.
 
-## Available Scripts
+## Содержание
+- [Возможности](#возможности)
+- [Стек](#стек)
+- [Как работает приложение](#как-работает-приложение)
+- [Требования к браузеру и устройству](#требования-к-браузеру-и-устройству)
+- [Почему нужен браузер на Chromium](#почему-нужен-браузер-на-chromium)
+- [Быстрый старт](#быстрый-старт)
+- [Сценарий использования](#сценарий-использования)
+- [BLE-протокол управления](#ble-протокол-управления)
+- [Структура проекта](#структура-проекта)
+- [Полезные материалы](#полезные-материалы)
 
-In the project directory, you can run:
+## Возможности
+- Поиск BLE-устройств с именем `Rover Toy XXX` или `Yandex Delivery Robot`
+- Подключение к роботу по GATT из браузера
+- Управление движением: вперед, назад, влево, вправо
+- Остановка по отпусканию кнопки управления
+- Включение и выключение света на роботе
+- Легкий браузерный интерфейс без установки отдельного приложения
 
-### `npm start`
+## Стек
+- JavaScript
+- React 18
+- Create React App
+- Web Bluetooth API
+- Bluetooth Low Energy (BLE, GATT)
+- GitHub Pages для деплоя
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Как работает приложение
+1. Пользователь нажимает кнопку поиска ровера.
+2. Приложение вызывает `navigator.bluetooth.requestDevice()` и открывает системное окно выбора BLE-устройства.
+3. После выбора вычисляются UUID сервиса и характеристики на основе имени устройства.
+4. Браузер подключается к GATT-серверу робота и получает характеристику управления.
+5. При нажатии на кнопки интерфейса приложение отправляет в характеристику байтовые команды движения и света.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Приложение рассчитано на управление одним выбранным ровером за сессию.
 
-### `npm test`
+## Требования к браузеру и устройству
+- Компьютер или Android-устройство с поддержкой Bluetooth Low Energy
+- Браузер с поддержкой Web Bluetooth API
+- Доступ к сайту в безопасном контексте: `https://` или `http://localhost` для локальной разработки
+- Включенный Bluetooth и разрешение на доступ к нему в браузере
+- Включенный и доступный для подключения робот
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Почему нужен браузер на Chromium
+Этот проект использует Web Bluetooth API, а именно:
+- `navigator.bluetooth.requestDevice()`
+- `device.gatt.connect()`
+- чтение GATT-сервиса и запись в BLE-характеристику
 
-### `npm run build`
+Технологически это означает, что приложение зависит не просто от "поддержки Bluetooth" в операционной системе, а от реализации Web Bluetooth внутри браузерного движка. В коде проекта нет нативного слоя или отдельного desktop-клиента: вся работа с BLE идет через браузерный JavaScript API.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+На практике для такого сценария нужен браузер, в котором Web Bluetooth действительно реализован. Для этого проекта рекомендуется использовать актуальный браузер на движке Chromium, например Google Chrome или Microsoft Edge. Если в браузере отсутствует объект `navigator.bluetooth`, приложение не сможет ни открыть окно выбора устройства, ни подключиться к роверу.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Дополнительно важно, что Web Bluetooth работает только в безопасном контексте. Поэтому локально проект удобно запускать на `localhost`, а в опубликованной версии нужен HTTPS.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Быстрый старт
+```bash
+npm ci
+npm start
+```
 
-### `npm run eject`
+После запуска приложение будет доступно по адресу [http://localhost:3000](http://localhost:3000).
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Сборка production-версии
+```bash
+npm run build
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Деплой на GitHub Pages
+```bash
+npm run deploy
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Сценарий использования
+1. Включите робота и убедитесь, что он доступен по BLE.
+2. Откройте приложение в Chrome или Edge.
+3. Нажмите `Найти ровер`.
+4. Выберите устройство `Rover Toy XXX` или `Yandex Delivery Robot` в системном окне браузера.
+5. Нажмите на найденный ровер в интерфейсе, чтобы подключиться.
+6. Управляйте движением кнопками-стрелками.
+7. Отпустите кнопку, чтобы отправить команду остановки.
+8. Используйте кнопку лампы для включения и выключения света.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## BLE-протокол управления
+### Имена устройств
+- `Rover Toy XXX`
+- `Yandex Delivery Robot`
 
-## Learn More
+### UUID
+- Сервис: `0000170d-XXXX-1000-8000-00805f9b34fb`
+- Характеристика: `00002a60-XXXX-1000-8000-00805f9b34fb`
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Где `XXXX`:
+- номер ровера в формате из четырех цифр для устройств `Rover Toy`
+- `0000` для устройства `Yandex Delivery Robot`
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Команды
+- `0x04` - движение вперед
+- `0x05` - движение назад
+- `0x02` - поворот влево
+- `0x01` - поворот вправо
+- `0x03` - включить свет
+- `0x06` - выключить свет
+- `0x00` - стоп
 
-### Code Splitting
+## Структура проекта
+- `src/App.js` - корневой компонент приложения
+- `src/components/FindRovers.js` - поиск доступных роверов и переход к управлению
+- `src/components/RoverControl.js` - экран управления движением и светом
+- `src/bluetooth.js` - логика поиска, подключения и отправки BLE-команд
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Полезные материалы
+- [MDN: Web Bluetooth API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Bluetooth_API)
+- [MDN: Bluetooth.requestDevice()](https://developer.mozilla.org/en-US/docs/Web/API/Bluetooth/requestDevice)
+- [MDN: Secure contexts](https://developer.mozilla.org/en-US/docs/Web/Security/Secure_Contexts)
+- [Chrome for Developers: Communicating with Bluetooth devices over JavaScript](https://developer.chrome.com/docs/capabilities/bluetooth)
